@@ -7,6 +7,8 @@
 ;; Keywords: ROS, launch file, GitHub
 ;; URL: https://github.com/iory/launch-mode
 
+(require 'launch-find-definition)
+
 
 ;;; Constants =================================================================
 
@@ -15,15 +17,6 @@
 
 (defconst launch-output-buffer-name "*launch-output*"
   "Name of temporary buffer for launch command output.")
-
-(defconst launch-mode-source-dir
-  (if load-file-name
-      (file-name-directory load-file-name)
-    default-directory
-    )
-  "Source dir of launch-mode")
-
-(load (concatenate #'string launch-mode-source-dir "launch-find-definition.el"))
 
 ;;; Mode Definition  ==========================================================
 
