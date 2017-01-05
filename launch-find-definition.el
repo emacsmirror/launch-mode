@@ -11,6 +11,13 @@
 
 ;;; Constants =================================================================
 
+(defconst launch-mode-source-dir
+  (if load-file-name
+      (file-name-directory load-file-name)
+    default-directory
+    )
+  "Source dir of launch-mode")
+
 (defconst launch-goto-definition-py "goto_launch.py"
   "Name of python script find launch file"
   )
