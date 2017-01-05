@@ -31,8 +31,9 @@
   )
 
 ;;;###autoload
-(setq auto-mode-alist
-      (cons (cons "\\.launch\\'" 'launch-mode) auto-mode-alist))
+(add-to-list 'auto-mode-alist '("\\.launch\\'" . launch-mode))
+(add-to-list 'auto-mode-alist '("\\.launch.xml\\'" . launch-mode))
+(add-to-list 'auto-mode-alist '("\\.test\\'" . launch-mode))
 
 ;;; Hook keymap ===============================================================
 
