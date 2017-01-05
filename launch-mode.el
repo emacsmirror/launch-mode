@@ -53,25 +53,6 @@
 (add-to-list 'auto-mode-alist '("\\.launch.xml\\'" . launch-mode))
 (add-to-list 'auto-mode-alist '("\\.test\\'" . launch-mode))
 
-;;; Hook keymap ===============================================================
-
-;;;###autoload
-(defun launch-enable-keymap (&optional prefix)
-  "Setup standard keybindings for the ros-launch file"
-  (interactive)
-  (if prefix
-      (unless (string-match " $" prefix)
-        (setq prefix (concat prefix " ")))
-    (setq prefix "C-c r")
-    )
-  (define-key launch-mode-map (kbd (concat prefix ",")) 'launch-insert-node-name)
-  (define-key launch-mode-map (kbd (concat prefix ".")) 'launch-goto-include-launch)
-  (define-key launch-mode-map (kbd (concat prefix "[")) 'launch-location-stack-forward)
-  (define-key launch-mode-map (kbd (concat prefix "]")) 'launch-location-stack-back)
-  )
-
-(add-hook 'launch-mode-hook 'launch-enable-keymap)
-
 
 (provide 'launch-mode)
 ;; Local Variables:
