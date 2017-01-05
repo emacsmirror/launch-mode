@@ -197,20 +197,14 @@ If location-arg is non-nil, then push it instead."
 
 (defun launch-insert-node-name ()
   (interactive)
-  (helm :sources '((name . "helm-launch-insert-nodename")
-                   (buffer . "*helm-launch-insert-nodename*")
-                   (candidates-in-buffer)
-                   (migemo . t)
-                   (init . (lambda ()
-                             (helm-init-candidates-in-buffer 'global
-                               (shell-command-to-string
-                                (concatenate #'string "python " launch-insert-node-name-py-path " " (buffer-file-name))))))
-                   (action . (lambda (x)
-                               (let ((xlst (split-string x "\t")))
-                                 (insert (elt xlst 1))
-                                 )))
-                   )
-        )
+  (let (nodename-list
+        selected-nodename)
+    (setq nodename-list (split-string (shell-command-to-string
+                                (concatenate #'string "python " launch-insert-node-name-py-path " " (buffer-file-name))) "\n"))
+    (setq selected-nodename (ido-completing-read "insert node_name" nodename-list))
+    (let ((xlst (split-string selected-nodename "\t")))
+      (insert (elt xlst 1)))
+    )
   )
 
 (defun launch-print-current-word ()
