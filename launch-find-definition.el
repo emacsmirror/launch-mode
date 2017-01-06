@@ -1,4 +1,4 @@
-;;; find-definition.el --- find-definition of launch  -*- lexical-binding: t; -*-
+;;; launch-find-definition.el --- find-definition of launch  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2016  iory
 
@@ -245,3 +245,5 @@ If location-arg is non-nil, then push it instead."
 
 
 (provide 'launch-find-definition)
+
+;;; launch-find-definition.el ends here
