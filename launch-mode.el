@@ -3,7 +3,7 @@
 ;; Author: iory <ab.ioryz@gmail.com>
 ;; URL: https://github.com/iory/launch-mode
 ;; Version: 0.0.1
-;; Package-Requires: ((emacs "24.4") (helm "2.0"))
+;; Package-Requires: ((emacs "24.4"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
