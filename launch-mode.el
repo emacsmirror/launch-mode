@@ -49,9 +49,10 @@
   )
 
 ;;;###autoload
-(add-to-list 'auto-mode-alist '("\\.launch\\'" . launch-mode))
-(add-to-list 'auto-mode-alist '("\\.launch.xml\\'" . launch-mode))
-(add-to-list 'auto-mode-alist '("\\.test\\'" . launch-mode))
+(progn
+  (add-to-list 'auto-mode-alist '("\\.launch\\'" . launch-mode))
+  (add-to-list 'auto-mode-alist '("\\.launch.xml\\'" . launch-mode))
+  (add-to-list 'auto-mode-alist '("\\.test\\'" . launch-mode)))
 
 
 (provide 'launch-mode)
