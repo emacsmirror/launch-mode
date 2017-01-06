@@ -7,6 +7,7 @@
 
 (require 'bookmark)
 (require 'repeat)
+(require 'cl-lib)
 
 
 ;;; Constants =================================================================
@@ -155,7 +156,7 @@
 If location-arg is non-nil, then push it instead."
   (let ((location (or location-arg (launch-current-location))))
     (while (> launch-location-stack-index 0)
-      (decf launch-location-stack-index)
+      (cl-decf launch-location-stack-index)
       (pop launch-location-stack))
     (unless (string= location (car launch-location-stack))
       (push location launch-location-stack)
@@ -200,7 +201,7 @@ If location-arg is non-nil, then push it instead."
   (let (nodename-list
         selected-nodename)
     (setq nodename-list (split-string (shell-command-to-string
-                                (concatenate #'string "python " launch-insert-node-name-py-path " " (buffer-file-name))) "\n"))
+                                (cl-concatenate #'string "python " launch-insert-node-name-py-path " " (buffer-file-name))) "\n"))
     (setq selected-nodename (ido-completing-read "insert node_name" nodename-list))
     (let ((xlst (split-string selected-nodename "\t")))
       (insert (elt xlst 1)))
@@ -228,13 +229,13 @@ If location-arg is non-nil, then push it instead."
                      (string-equal (substring launch-file-name -11) ".launch.xml"))
                 ))
       (message "%s" "Must be launch file name")
-      (return-from launch-goto-include-launch)
+      (cl-return-from launch-goto-include-launch)
       )
     (setq launch-file-name
           (replace-regexp-in-string
            "\n$" ""
            (shell-command-to-string
-            (concatenate #'string "python " launch-goto-include-launch-py-path " \"" launch-file-name "\""))
+            (cl-concatenate #'string "python " launch-goto-include-launch-py-path " \"" launch-file-name "\""))
            )
           )
     (when (file-exists-p launch-file-name)
