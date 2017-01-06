@@ -165,6 +165,18 @@ If location-arg is non-nil, then push it instead."
       (run-hooks 'launch-jump-hook))))
 
 ;;;###autoload
+(defun launch-goto-offset (pos)
+  (interactive "NOffset: ")
+  (if (launch-buffer-is-multibyte)
+      (let ((prev (buffer-local-value enable-multibyte-characters (current-buffer)))
+            (loc (local-variable-p enable-multibyte-characters)))
+        (set-buffer-multibyte nil)
+        (goto-char (1+ pos))
+        (set-buffer-multibyte prev)
+        (unless loc
+          (kill-local-variable enable-multibyte-characters)))
+    (goto-char (1+ pos))))
+
 (defun launch-location-stack-jump (by)
   (interactive)
   (let (;; copy of repeat-on-final-keystroke functionality from repeat.el
